@@ -4,14 +4,14 @@
 #include <vector>
 #include <fstream>
 
-#include <common/camera.h>
-#include <common/renderer.h>
+#include <BFW/camera.h>
+#include <BFW/renderer.h>
 
-Renderer::Renderer(unsigned int w, unsigned int h)
+Renderer::Renderer(unsigned int w, unsigned int h,char* name)
 {
 	_window_width = w;
 	_window_height = h;
-
+	_window_name = name;
 	this->init();
 }
 
@@ -35,7 +35,7 @@ int Renderer::init()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 	// Open a window and create its OpenGL context
-	_window = glfwCreateWindow( _window_width, _window_height, "Demo", NULL, NULL);
+	_window = glfwCreateWindow( _window_width, _window_height, _window_name, NULL, NULL);
 	if( _window == NULL ){
 		fprintf( stderr, "Failed to open GLFW window.\n" );
 		glfwTerminate();

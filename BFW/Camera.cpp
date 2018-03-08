@@ -1,4 +1,4 @@
-#include <common/camera.h>
+#include <BFW/camera.h>
 
 glm::mat4 _viewMatrix;
 

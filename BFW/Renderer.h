@@ -8,12 +8,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
-#include <common/sprite.h>
+#include <BFW/Sprite.h>
 
 class Renderer
 {
 	public:
-		Renderer(unsigned int w, unsigned int h);
+		Renderer(unsigned int w, unsigned int h, char* name);
 		virtual ~Renderer();
 
 		void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
@@ -28,6 +28,7 @@ class Renderer
 		GLFWwindow* _window;
 		unsigned int _window_width;
 		unsigned int _window_height;
+		char* _window_name;
 
 		GLuint loadShaders(
 			const char* vertex_file_path,

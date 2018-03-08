@@ -31,7 +31,7 @@ endif(UNIX)
 
 if(WIN32)
 	# Create a group for Visual Studio
-	SOURCE_GROUP(BlastFramework REGULAR_EXPRESSION ".*/common/.*" )
+	SOURCE_GROUP(BlastFramework REGULAR_EXPRESSION ".*/BFW/.*" )
 	# suppress pedantic warnings
 	add_definitions( "/W1 /D_CRT_SECURE_NO_WARNINGS /wd4514 /nologo" )
 endif(WIN32)
@@ -58,20 +58,20 @@ add_definitions(
 )
 
 # Common (libcommon.a)
-add_library(BlastFramework
-	BlastFramework/camera.h
-	BlastFramework/camera.cpp
-	BlastFramework/renderer.h
-	BlastFramework/renderer.cpp
-	BlastFramework/sprite.h
-	BlastFramework/sprite.cpp
-	BlastFramework/Entity.cpp
-	BlastFramework/Entity.h
-	BlastFramework/Scene.cpp
-	BlastFramework/Scene.h
+add_library(BFW
+	BFW/camera.h
+	BFW/camera.cpp
+	BFW/renderer.h
+	BFW/renderer.cpp
+	BFW/sprite.h
+	BFW/sprite.cpp
+	BFW/Entity.cpp
+	BFW/Entity.h
+	BFW/Scene.cpp
+	BFW/Scene.h
 )
 
 file(
-	COPY BlastFramework/shaders
+	COPY BFW/shaders
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
