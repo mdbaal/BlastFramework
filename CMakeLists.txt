@@ -69,8 +69,32 @@ add_library(BFW
 	BFW/Entity.h
 	BFW/Scene.cpp
 	BFW/Scene.h
+	BFW/Core.cpp
+	BFW/Core.h
+	#BFW/Button.cpp
+	#BFW/Button.h
+	#BFW/Clickable.cpp
+	#BFW/Clickable.h
+	#BFW/Debug.cpp
+	#BFW/Debug.h
+	BFW/Input.cpp
+	BFW/Input.h
+)
+# Demo
+add_executable(Demo
+	demo/Demo.cpp
+	demo/World.cpp
+	demo/World.h
+)
+target_link_libraries(Demo
+	BFW
+	${ALL_GRAPHICS_LIBS}
 )
 
+file(
+	COPY Demo/assets
+	DESTINATION ${CMAKE_BINARY_DIR}
+)
 file(
 	COPY BFW/shaders
 	DESTINATION ${CMAKE_BINARY_DIR}

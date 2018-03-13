@@ -6,18 +6,18 @@ glm::mat4 _viewMatrix;
 glm::vec3 position = glm::vec3( 0, 0, 5 );
 glm::vec3 cursor = glm::vec3( 0, 0, 0 );
 
-glm::mat4 getViewMatrix(){
+ glm::mat4 Camera::getViewMatrix(){
 	return _viewMatrix;
 }
 
-glm::vec3 getCursor(){
+glm::vec3 Camera::getCursor(){
 	return cursor;
 }
 
 float speed = 300.0f; // 300 units / second
 
 
-void computeMatricesFromInputs(GLFWwindow* window)
+void Camera::computeMatricesFromInputs(GLFWwindow* window)
 {
 	// glfwGetTime is called only once, the first time this function is called
 	static double lastTime = glfwGetTime();

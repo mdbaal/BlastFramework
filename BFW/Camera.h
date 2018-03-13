@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CAMERA_H
 #define CAMERA_H
 
@@ -7,9 +8,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
-
-void computeMatricesFromInputs(GLFWwindow* window);
-glm::mat4 getViewMatrix();
-glm::vec3 getCursor();
-
-#endif
+class Camera {
+public:	 
+	glm::mat4 getViewMatrix();
+	glm::vec3 getCursor();
+	void computeMatricesFromInputs(GLFWwindow* window);
+};
+#endif // !CAMERA_H

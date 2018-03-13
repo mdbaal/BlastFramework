@@ -1,3 +1,4 @@
+#pragma once
 #ifndef RENDERER_H
 #define RENDERER_H
 
@@ -9,14 +10,17 @@
 #include <glm/gtx/euler_angles.hpp>
 
 #include <BFW/Sprite.h>
+#include <BFW/Scene.h>
 
 class Renderer
 {
 	public:
+		Renderer();
 		Renderer(unsigned int w, unsigned int h, char* name);
 		virtual ~Renderer();
 
-		void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
+		void renderEntity(Entity* entity, glm::mat4 modelMatrix, Camera* camera);
+		void renderScene(Scene* scene);
 		GLFWwindow* window() { return _window; };
 
 		unsigned int width() { return _window_width; };
@@ -40,4 +44,4 @@ class Renderer
 		glm::mat4 _projectionMatrix;
 };
 
-#endif /* RENDERER_H */
+#endif // !RENDERER_H
