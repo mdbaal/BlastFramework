@@ -1,7 +1,8 @@
 #include "Scene.h"
 
-Scene::Scene() {
-	start();
+Scene::Scene() : Entity("",0,0,0) {
+	this->running = true;
+	this->camera = new Camera();
 }
 Scene::~Scene() {
 	delete this->camera;
@@ -16,8 +17,16 @@ void Scene::stop() {
 bool Scene::isRunning() {
 	return this->running;
 }
-void Scene::addCamera() {
-	this->camera = new Camera();
+void Scene::updateScene(float deltaTime) {
+	updateEntity(this, deltaTime);
+}
+void Scene::updateEntity(Entity* entity,float deltaTime) {
+	entity->update(deltaTime);
+
+	for each (Entity* e in entity->getChildren())
+	{
+		updateEntity(e, deltaTime);
+	}
 }
 
 Camera* Scene::getCamera() {

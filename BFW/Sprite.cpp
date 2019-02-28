@@ -8,7 +8,7 @@
 #include <BFW/sprite.h>
 
 
-Sprite::Sprite(std::string image_path)
+Sprite::Sprite(std::string& image_path)
 {
 	// these will be set correctly in loadTGA()
 	_width = 0;
@@ -59,11 +59,10 @@ Sprite::~Sprite()
 GLuint Sprite::loadTGA(const std::string& imagepath)
 {
 	std::cout << "Loading TGA: " << imagepath << std::endl;
-
 	FILE *file;
 	unsigned char type[4];
 	unsigned char info[6];
-
+	
 	file = fopen(imagepath.c_str(), "rb");
 
 	if (!file) {
@@ -127,7 +126,7 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	// filter the Texture
-	unsigned char filter = 1;
+	unsigned char filter = 0;
 	switch (filter) {
 		case 0:
 			// No filtering.
@@ -183,7 +182,6 @@ GLuint Sprite::loadTGA(const std::string& imagepath)
 
 	// OpenGL has now copied the data. Free our own version
 	delete [] data;
-
 	// Return the ID of the texture we just created
 	return textureID;
 }

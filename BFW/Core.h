@@ -2,6 +2,8 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include <ioStream>
+
 #include "Renderer.h"
 #include "Input.h"
 #include "Scene.h"
@@ -12,13 +14,11 @@ public:
 	Core();
 	virtual ~Core();
 	void run(Scene* s);
-
 	float CalcDeltaTime();
-
-private:
 	Renderer renderer;
-	float deltaTime = 0;
-
+private:
+	float _deltaTime = 0;
+	
 };
 
 

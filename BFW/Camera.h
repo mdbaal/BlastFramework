@@ -10,8 +10,18 @@
 #include <glm/gtx/euler_angles.hpp>
 class Camera {
 public:	 
+	Camera();
+	Camera(glm::vec3 position);
 	glm::mat4 getViewMatrix();
 	glm::vec3 getCursor();
 	void computeMatricesFromInputs(GLFWwindow* window);
+
+	glm::mat4 _viewMatrix;
+
+	// Initial position : on +Z
+	glm::vec3 position;
+	glm::vec3 cursor;
+
+	float speed;
 };
 #endif // !CAMERA_H

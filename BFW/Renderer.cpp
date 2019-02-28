@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
+#include <thread>
 
 #include <BFW/camera.h>
 #include <BFW/renderer.h>
@@ -12,10 +14,12 @@ Renderer::Renderer() {
 
 Renderer::Renderer(unsigned int w, unsigned int h,char* name)
 {
+	std::cout << "[Renderer init]" << std::endl;
 	_window_width = w;
 	_window_height = h;
 	_window_name = name;
 	this->init();
+	
 }
 
 Renderer::~Renderer()
@@ -51,6 +55,7 @@ int Renderer::init()
 		fprintf(stderr, "Failed to initialize GLEW\n");
 		return -1;
 	}
+	glfwSwapInterval(1);
 
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE);
@@ -77,90 +82,91 @@ int Renderer::init()
 	return 0;
 }
 void Renderer::renderScene(Scene* scene) {
-
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// 'root' scene node has identity Matrix
-	glm::mat4 modelMatrix = glm::mat4(1.0f);
-
+	//compute matrices
+	scene->getCamera()->computeMatricesFromInputs(_window);
+	//viewMatrix
+	glm::mat4 viewMatrix = scene->getCamera()->getViewMatrix();
 	//render all in scene
-	this->renderEntity(scene,modelMatrix,scene->getCamera());
+	this->renderEntity(scene, viewMatrix,scene->getCamera());
 
 	// Swap buffers
-	glfwSwapBuffers(_window);
+	glfwSwapBuffers(_window); 
 
-	
+	glfwPollEvents();
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }
-void Renderer::renderEntity(Entity* entity,glm::mat4 modelMatrix,Camera* camera)
-{
-	glm::mat4 viewMatrix = camera->getViewMatrix();
+void Renderer::renderEntity(Entity* entity, glm::mat4 viewMatrix,Camera* camera)
+{	
+
+ 	if (entity->getSprite() != NULL) {
+		renderSprite(entity->getSprite(), entity->getPosition(), entity->getScale(), entity->getRotation(), viewMatrix);
+	}
 	
+	for each(Entity* e in entity->getChildren()) {
+		renderEntity(e, viewMatrix, camera);
+	}
+}
+void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale, float rotation, glm::mat4 viewMatrix)
+{
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), entity->getPosition());
-	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, entity->getRotation());
-	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), entity->getScale());
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), position);
+	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, rotation);
+	glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), scale);
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
 	glm::mat4 MVP = _projectionMatrix * viewMatrix * modelMatrix;
 
+
 	// Send our transformation to the currently bound shader,
 	// in the "MVP" uniform
 	GLuint matrixID = glGetUniformLocation(_programID, "MVP");
 	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
-	//if sprite is not empty, render the sprite
-	if (entity->getSprite() != NULL) {
-		// Bind our texture in Texture Unit 0
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, entity->getSprite()->texture());
-		// Set our "myTextureSampler" sampler to user Texture Unit 0
-		GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
-		glUniform1i(textureID, 0);
 
-		// 1st attribute buffer : vertices
-		GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
-		glEnableVertexAttribArray(vertexPosition_modelspaceID);
-		glBindBuffer(GL_ARRAY_BUFFER, entity->getSprite()->vertexbuffer());
-		glVertexAttribPointer(
-			vertexPosition_modelspaceID,  // The attribute we want to configure
-			3,							// size : x+y+z => 3
-			GL_FLOAT,					 // type
-			GL_FALSE,					 // normalized?
-			0,							// stride
-			(void*)0					  // array buffer offset
-		);
+	// Bind our texture in Texture Unit 0
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, sprite->texture());
+	// Set our "myTextureSampler" sampler to user Texture Unit 0
+	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
+	glUniform1i(textureID, 0);
 
-		// 2nd attribute buffer : UVs
-		GLuint vertexUVID = glGetAttribLocation(_programID, "vertexUV");
-		glEnableVertexAttribArray(vertexUVID);
-		glBindBuffer(GL_ARRAY_BUFFER, entity->getSprite()->uvbuffer());
-		glVertexAttribPointer(
-			vertexUVID,				   // The attribute we want to configure
-			2,							// size : U+V => 2
-			GL_FLOAT,					 // type
-			GL_FALSE,					 // normalized?
-			0,							// stride
-			(void*)0					  // array buffer offset
-		);
+	// 1st attribute buffer : vertices
+	GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
+	glEnableVertexAttribArray(vertexPosition_modelspaceID);
+	glBindBuffer(GL_ARRAY_BUFFER, sprite->vertexbuffer());
+	glVertexAttribPointer(
+		vertexPosition_modelspaceID,  // The attribute we want to configure
+		3,							// size : x+y+z => 3
+		GL_FLOAT,					 // type
+		GL_FALSE,					 // normalized?
+		0,							// stride
+		(void*)0					  // array buffer offset
+	);
 
-		// Draw the triangles !
-		glDrawArrays(GL_TRIANGLES, 0, 2 * 3); // 2*3 indices starting at 0 -> 2 triangles
+	// 2nd attribute buffer : UVs
+	GLuint vertexUVID = glGetAttribLocation(_programID, "vertexUV");
+	glEnableVertexAttribArray(vertexUVID);
+	glBindBuffer(GL_ARRAY_BUFFER, sprite->uvbuffer());
+	glVertexAttribPointer(
+		vertexUVID,				   // The attribute we want to configure
+		2,							// size : U+V => 2
+		GL_FLOAT,					 // type
+		GL_FALSE,					 // normalized?
+		0,							// stride
+		(void*)0					  // array buffer offset
+	);
 
-		glDisableVertexAttribArray(vertexPosition_modelspaceID);
-		glDisableVertexAttribArray(vertexUVID);
-	}
+	// Draw the triangles !
+	glDrawArrays(GL_TRIANGLES, 0, 2 * 3); // 2*3 indices starting at 0 -> 2 triangles
 
-	//for each child in an entity render that entity
-	if (entity->getChildren().size() > 0) {
-		for each (Entity* e in entity->getChildren())
-		{
-			renderEntity(e,modelMatrix,camera);
-		}
-	}
+	glDisableVertexAttribArray(vertexPosition_modelspaceID);
+	glDisableVertexAttribArray(vertexUVID);
 }
-
 GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path)
 {
 	// Create the shaders

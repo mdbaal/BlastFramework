@@ -57,7 +57,7 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-# Common (libcommon.a)
+# BFW (libBFW.a)
 add_library(BFW
 	BFW/camera.h
 	BFW/camera.cpp
@@ -71,20 +71,17 @@ add_library(BFW
 	BFW/Scene.h
 	BFW/Core.cpp
 	BFW/Core.h
-	#BFW/Button.cpp
-	#BFW/Button.h
-	#BFW/Clickable.cpp
-	#BFW/Clickable.h
-	#BFW/Debug.cpp
-	#BFW/Debug.h
 	BFW/Input.cpp
 	BFW/Input.h
 )
 # Demo
 add_executable(Demo
-	demo/Demo.cpp
-	demo/World.cpp
-	demo/World.h
+	demo/demo.cpp
+	demo/world.cpp
+	demo/world.h
+	demo/Card.cpp
+	demo/Card.h
+
 )
 target_link_libraries(Demo
 	BFW
@@ -92,7 +89,7 @@ target_link_libraries(Demo
 )
 
 file(
-	COPY Demo/assets
+	COPY demo/assets
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
 file(

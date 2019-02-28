@@ -1,37 +1,19 @@
 #include "Entity.h"
 
-Entity::Entity() {
+#include <ioStream>
 
+Entity::Entity(std::string sprite,float x,float y,float r) {
+	if(sprite != "") this->addSprite(sprite);
+	this->setPosition(x, y, 0);
+	this->setRotation(r);
 }
 
 Entity::~Entity() {
-	//if this parent is not NULL move children to that parent and clear the list,
-	//else set all parents to NULL and clear the list
-	if (this->parent != NULL) {
-		for (int i = this->children.size()-1;i > 0;i--)
-		{
-			Entity* e = this->children[i];
-			this->parent->addChild(e);
-			this->children[i] = NULL;
-		}
 
-		this->children.clear();
-	}
-	else {
-		for (int i = this->children.size() - 1; i > 0; i--)
-		{
-			Entity* e = this->children[i];
-			this->children[i] = NULL;
-		}
-
-		this->children.clear();
-	}
+	deleteSprite();
 	
 }
 //adders and setters
-void Entity::addSprite(Sprite* s) {
-	this->sprite = s;
-}
 
 void Entity::addSprite(std::string file) {
 	deleteSprite();
@@ -46,6 +28,10 @@ void Entity::addChild(Entity* e) {
 
 void Entity::setPosition(float x, float y, float z) {
 	this->position = glm::vec3(x, y, z);
+}
+void Entity::move(float x, float y) {
+	this->position.x += x;
+	this->position.y += y;
 }
 
 void Entity::setRotation(float r) {
@@ -89,4 +75,13 @@ void Entity::deleteSprite() {
 		delete this->sprite;
 		this->sprite = NULL;
 	}
+}
+bool Entity::clickedOn() {
+	if (Input::getInstance()->getMousePos().x > this->getPosition().x - this->getSprite()->width() / 2 && Input::getInstance()->getMousePos().x < this->getPosition().x + this->getSprite()->width() / 2) {
+		if (Input::getInstance()->getMousePos().y > this->getPosition().y - this->getSprite()->height() / 2 && Input::getInstance()->getMousePos().y < this->getPosition().y + this->getSprite()->height() / 2) {
+			//use function pointer later on
+			return true;
+		}
+	}
+	return false;
 }

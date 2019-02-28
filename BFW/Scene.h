@@ -9,14 +9,16 @@ class Scene : public Entity{
 public:
 	Scene();
 	virtual ~Scene();
+	void updateScene(float deltaTime);
+	void updateEntity(Entity* entity, float deltaTime);
 	bool isRunning();
 	void start();
 	void stop();
-	void addCamera();
 	Camera* getCamera();
+	Camera* camera;
 
 private:
-	Camera* camera;
+	
 	bool running;
 };
 

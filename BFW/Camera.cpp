@@ -1,10 +1,17 @@
-#include <BFW/camera.h>
+#include <BFW/Camera.h>
+#include <BFW/Input.h>
 
-glm::mat4 _viewMatrix;
 
-// Initial position : on +Z
-glm::vec3 position = glm::vec3( 0, 0, 5 );
-glm::vec3 cursor = glm::vec3( 0, 0, 0 );
+Camera::Camera() {
+	speed = 300.0f; // 300 units / second
+	cursor = glm::vec3(0, 0, 0);
+	position = glm::vec3(0, 0, 5);
+}
+Camera::Camera(glm::vec3 position) {
+	speed = 300.0f; // 300 units / second
+	cursor = glm::vec3(0, 0, 0);
+	this->position = position;
+}
 
  glm::mat4 Camera::getViewMatrix(){
 	return _viewMatrix;
@@ -14,9 +21,6 @@ glm::vec3 Camera::getCursor(){
 	return cursor;
 }
 
-float speed = 300.0f; // 300 units / second
-
-
 void Camera::computeMatricesFromInputs(GLFWwindow* window)
 {
 	// glfwGetTime is called only once, the first time this function is called
@@ -25,32 +29,6 @@ void Camera::computeMatricesFromInputs(GLFWwindow* window)
 	// Compute time difference between current and last frame
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
-
-	// Get mouse position
-	double xpos, ypos;
-	glfwGetCursorPos(window, &xpos, &ypos);
-	cursor = glm::vec3( xpos, ypos, 0 );
-
-	// Right and Down vector
-	glm::vec3 right = glm::vec3(1, 0, 0);
-	glm::vec3 up = glm::vec3(0, -1, 0);
-
-	// Move up
-	if (glfwGetKey( window, GLFW_KEY_UP ) == GLFW_PRESS){
-		position += up * deltaTime * speed;
-	}
-	// Move down
-	if (glfwGetKey( window, GLFW_KEY_DOWN ) == GLFW_PRESS){
-		position -= up * deltaTime * speed;
-	}
-	// Strafe right
-	if (glfwGetKey( window, GLFW_KEY_RIGHT ) == GLFW_PRESS){
-		position += right * deltaTime * speed;
-	}
-	// Strafe left
-	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
-		position -= right * deltaTime * speed;
-	}
 
 	// View matrix
 	_viewMatrix = glm::lookAt(

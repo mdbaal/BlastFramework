@@ -1,13 +1,19 @@
-#include "World.h"
+#include "world.h"
+#include "Card.h"
+#include "BFW/Core.h"
 
-
-World::World() : Scene() {
-	a = new Entity();
-	a->addSprite("assets/Card.tga");
-	this->addChild(a);
-
+World::World() {
+	card = new Card("assets/card.tga",10,100,0);
+	this->addChild(card);
 }
+
 World::~World() {
-	this->removeChild(a);
-	delete a;
+	this->removeChild(card);
+	delete card;
+	
+
+	this->getChildren().clear();
+}
+void World::update(float deltaTime) {
+	
 }

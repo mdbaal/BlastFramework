@@ -1,24 +1,23 @@
-
+// Include GLEW
 #include <GL/glew.h>
 
+// Include GLFW
 #include <glfw3.h>
 
 #include <BFW/Core.h>
-#include "World.h"
 
-int main(void) {
+#include <demo/world.h>
 
+int main( void )
+{
 	Core core;
 
-	World* w = new World();
- 
-	while (w->isRunning()) {
-		core.run(w);
-	}
+	World* world = new World();
 
+	core.run(world);
 
-	delete w;
+	// Close OpenGL window and terminate GLFW
+	glfwTerminate();
 
-  return 0;
+	return 0;
 }
-

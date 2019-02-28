@@ -9,9 +9,8 @@
 class Sprite
 {
 	public:
-		Sprite(std::string image_path);
+		Sprite(std::string& image_path);
 		virtual ~Sprite();
-
 		GLuint texture() { return _texture; };
 		GLuint vertexbuffer() { return _vertexbuffer; };
 		GLuint uvbuffer() { return _uvbuffer; };

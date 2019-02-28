@@ -19,7 +19,8 @@ class Renderer
 		Renderer(unsigned int w, unsigned int h, char* name);
 		virtual ~Renderer();
 
-		void renderEntity(Entity* entity, glm::mat4 modelMatrix, Camera* camera);
+		void renderSprite(Sprite* sprite, glm::vec3 pos, glm::vec3 scale, float rotation, glm::mat4 viewMatrix);
+		void renderEntity(Entity* entity, glm::mat4 viewMatrix, Camera* camera);
 		void renderScene(Scene* scene);
 		GLFWwindow* window() { return _window; };
 
@@ -38,6 +39,7 @@ class Renderer
 			const char* vertex_file_path,
 			const char* fragment_file_path
 		);
+
 
 		GLuint _programID;
 

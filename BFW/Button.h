@@ -2,16 +2,16 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "Clickable.h"
-class Button : public Clickable {
+#include "Entity.h"
+
+class Button : public Entity{
 public:
-	Button(std::string image,int x, int y,float scale);
-	
+	Button(std::string sprite, float x, float y, float r);
 	virtual ~Button();
-	virtual void update(float deltatime);
 
 private:
-			
+	
+	
 };
 
 #endif // !BUTTON_H
