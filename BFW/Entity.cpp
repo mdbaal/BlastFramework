@@ -15,7 +15,7 @@ Entity::~Entity() {
 }
 //adders and setters
 
-void Entity::addSprite(std::string file) {
+void Entity::setSprite(std::string file) {
 	deleteSprite();
 	this->sprite = new Sprite(file);
 }
