@@ -3,7 +3,7 @@
 #include <ioStream>
 
 Entity::Entity(std::string sprite,float x,float y,float r) {
-	if(sprite != "") this->addSprite(sprite);
+	if(sprite != "") this->setSprite(sprite);
 	this->setPosition(x, y, 0);
 	this->setRotation(r);
 }
@@ -61,11 +61,15 @@ Sprite* Entity::getSprite() {
 }
 //removers and deleters
 void Entity::removeChild(Entity* e) {
-	for(int i = 0;i < this->children.size();i++)
-	{
-		if (this->children[i] == e) {
-			this->children[i]->parent = NULL;
-			this->children[i] = NULL;
+	if (e == nullptr) return;
+	for (auto it = this->children.begin(); it != this->children.end();it++) {
+		if (*it == e) {
+			e->parent = nullptr;
+			this->children.erase(it);
+			for (int i = 0; i < e->children.size(); i++) {
+				this->addChild(e->children[i]);
+			}
+			return;
 		}
 	}
 }

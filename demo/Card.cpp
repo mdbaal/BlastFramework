@@ -10,16 +10,16 @@ Card::~Card() {
 	
 }
 void Card::update(float deltatime) {
-	if (Input::getInstance()->getKey(D)){
+	if (this->input()->getKey(D)){
 		this->move(1,0);
 	}
-	if (Input::getInstance()->getKey(A)) {
+	if (this->input()->getKey(A)) {
 		this->move(-1, 0);
 	}
-	if (Input::getInstance()->getKey(W)) {
+	if (this->input()->getKey(W)) {
 		this->move(0, -1);
 	}
-	if (Input::getInstance()->getKey(S)) {
+	if (this->input()->getKey(S)) {
 		this->move(0, 1);
 	}
 

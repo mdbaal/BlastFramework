@@ -15,7 +15,7 @@ public:
 	virtual ~Entity();
 	virtual void update(float deltaTime) = 0;
   //setters and adders
-  void addSprite(std::string file);
+  void setSprite(std::string file);
   void addChild(Entity* e);
   void setPosition(float x,float y,float z);
   void move(float x, float y);
@@ -27,6 +27,7 @@ public:
   float getRotation();
   glm::vec3 getScale();
   Sprite* getSprite();
+
   Input* input() {
 	  return Input::getInstance();
   }

@@ -7,7 +7,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "Scene.h"
-#include "Debug.h"
+//#include "Debug.h"
 
 class Core {
 public:

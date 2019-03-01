@@ -18,7 +18,7 @@ Input::~Input() {
 	delete input;
 }
 
-//Input* Input::input = nullptr;
+Input* Input::input = nullptr;
 Input* Input::getInstance()
 {
 	if (input == nullptr)

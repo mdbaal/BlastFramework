@@ -3,7 +3,8 @@
 #define WORLD_H
 
 #include <BFW/Scene.h>
-#include "BFW/Button.h"
+#include "Card.h"
+//#include "BFW/Button.h"
 
 class World : public Scene {
 public:
@@ -11,8 +12,10 @@ public:
 	virtual ~World();
 	virtual void update(float Deltatime);
 
-	Entity* card;
-	Button* button;
+	Card* card = nullptr;
+	Card* card1 = nullptr;
+	
+	//Button* button;
 
 private:
 
