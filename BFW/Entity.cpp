@@ -76,12 +76,3 @@ void Entity::deleteSprite() {
 		this->sprite = NULL;
 	}
 }
-bool Entity::clickedOn() {
-	if (Input::getInstance()->getMousePos().x > this->getPosition().x - this->getSprite()->width() / 2 && Input::getInstance()->getMousePos().x < this->getPosition().x + this->getSprite()->width() / 2) {
-		if (Input::getInstance()->getMousePos().y > this->getPosition().y - this->getSprite()->height() / 2 && Input::getInstance()->getMousePos().y < this->getPosition().y + this->getSprite()->height() / 2) {
-			//use function pointer later on
-			return true;
-		}
-	}
-	return false;
-}

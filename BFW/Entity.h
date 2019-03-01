@@ -36,7 +36,6 @@ public:
   void removeChild(Entity* e);
   void deleteSprite();
 
-  bool clickedOn();
 private:
   Entity * parent = NULL;
   Sprite* sprite = NULL;
