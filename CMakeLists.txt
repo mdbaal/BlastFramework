@@ -73,6 +73,8 @@ add_library(BFW
 	BFW/Core.h
 	BFW/Input.cpp
 	BFW/Input.h
+	BFW/debug.cpp
+	BFW/debug.h
 )
 # Demo
 add_executable(Demo
