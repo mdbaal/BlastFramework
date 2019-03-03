@@ -5,6 +5,7 @@
 #include <string>
 
 #include <GL/glew.h>
+#include <BFW/debug.h>
 
 class Sprite
 {
@@ -27,6 +28,7 @@ class Sprite
 
 		unsigned int _width;
 		unsigned int _height;
+		Debug debug;
 };
 
 #endif // !SPRITE_H

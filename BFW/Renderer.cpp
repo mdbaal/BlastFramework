@@ -8,13 +8,14 @@
 
 #include <BFW/camera.h>
 #include <BFW/renderer.h>
+
 Renderer::Renderer() {
 	
 }
 
 Renderer::Renderer(unsigned int w, unsigned int h,char* name)
 {
-	std::cout << "[Renderer init]" << std::endl;
+	debug.message("[Renderer init]");
 	_window_width = w;
 	_window_height = h;
 	_window_name = name;

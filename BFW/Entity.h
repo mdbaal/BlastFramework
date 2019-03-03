@@ -8,6 +8,7 @@
 #include "glm/glm.hpp"
 #include <vector>
 #include "Input.h"
+#include <BFW/debug.h>
 
 class Entity{
 public:
@@ -44,6 +45,7 @@ private:
   glm::vec3 scale = glm::vec3(1,1,1);
   float rotation = 0;
   std::vector<Entity*> children;
+  Debug debug;
 
 };
 

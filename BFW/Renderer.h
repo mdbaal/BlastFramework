@@ -11,6 +11,7 @@
 
 #include <BFW/Sprite.h>
 #include <BFW/Scene.h>
+#include <BFW/debug.h>
 
 class Renderer
 {
@@ -39,7 +40,7 @@ class Renderer
 			const char* vertex_file_path,
 			const char* fragment_file_path
 		);
-
+		Debug debug;
 
 		GLuint _programID;
 
