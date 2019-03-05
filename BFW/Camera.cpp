@@ -1,5 +1,5 @@
 #include <BFW/Camera.h>
-#include <BFW/Input.h>
+
 
 
 Camera::Camera() {

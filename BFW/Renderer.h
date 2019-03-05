@@ -9,6 +9,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <thread>
+
+#include <BFW/camera.h>
 #include <BFW/Sprite.h>
 #include <BFW/Scene.h>
 #include <BFW/debug.h>

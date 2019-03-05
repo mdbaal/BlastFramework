@@ -1,7 +1,5 @@
 #include "Entity.h"
 
-#include <ioStream>
-
 Entity::Entity(std::string sprite,float x,float y,float r) {
 	if(sprite != "") this->setSprite(sprite);
 	this->setPosition(x, y, 0);

@@ -1,12 +1,3 @@
-#include <cstdio>
-#include <cstdlib>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <iostream>
-#include <thread>
-
-#include <BFW/camera.h>
 #include <BFW/renderer.h>
 
 Renderer::Renderer() {

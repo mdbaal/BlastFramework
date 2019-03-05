@@ -2,8 +2,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include <ioStream>
-
 #include "Renderer.h"
 #include "Input.h"
 #include "Scene.h"
