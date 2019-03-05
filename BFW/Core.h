@@ -7,7 +7,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "Scene.h"
-//#include "Debug.h"
+#include "debug.h"
 
 class Core {
 public:
@@ -18,6 +18,7 @@ public:
 	Renderer renderer;
 private:
 	float _deltaTime = 0;
+	Debug debug;
 	
 };
 

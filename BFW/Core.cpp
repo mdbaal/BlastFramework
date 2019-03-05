@@ -2,7 +2,7 @@
 #include "Core.h"
 
 Core::Core() {
-	std::cout << "[Core init]" << std::endl;
+	debug.message("[Core init]");
 	renderer = Renderer(1024, 768, "demo");
 	
 }
