@@ -65,16 +65,18 @@ add_library(BFW
 	BFW/renderer.cpp
 	BFW/sprite.h
 	BFW/sprite.cpp
-	BFW/Entity.cpp
-	BFW/Entity.h
-	BFW/Scene.cpp
-	BFW/Scene.h
-	BFW/Core.cpp
-	BFW/Core.h
-	BFW/Input.cpp
-	BFW/Input.h
+	BFW/entity.cpp
+	BFW/entity.h
+	BFW/scene.cpp
+	BFW/scene.h
+	BFW/core.cpp
+	BFW/core.h
+	BFW/input.cpp
+	BFW/input.h
 	BFW/debug.cpp
 	BFW/debug.h
+	BFW/resourceManager.cpp
+	BFW/resourceManager.h
 )
 # Demo
 add_executable(Demo
