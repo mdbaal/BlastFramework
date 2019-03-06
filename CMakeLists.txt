@@ -77,7 +77,13 @@ add_library(BFW
 	BFW/debug.h
 	BFW/resourceManager.cpp
 	BFW/resourceManager.h
+
+	BFW/texture.cpp
+	BFW/texture.h
+	BFW/shader.cpp
+	BFW/shader.h
 )
+
 # Demo
 add_executable(Demo
 	demo/demo.cpp

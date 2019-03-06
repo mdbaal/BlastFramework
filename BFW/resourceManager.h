@@ -3,9 +3,10 @@
 
 #include <map>
 #include <string>
-#include "GL/glew.h"
-#include "texture.h"
-#include "shader.h"
+#include <GL/glew.h>
+
+#include <BFW/texture.h>
+#include <BFW/shader.h>
 
 class ResourceManager{
 public:

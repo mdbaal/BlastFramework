@@ -122,7 +122,7 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 
 	// Bind our texture in Texture Unit 0
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, sprite->texture());
+	glBindTexture(GL_TEXTURE_2D, sprite->texture().ID);
 	// Set our "myTextureSampler" sampler to user Texture Unit 0
 	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
 	glUniform1i(textureID, 0);

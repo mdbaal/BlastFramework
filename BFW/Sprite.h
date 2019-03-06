@@ -6,13 +6,14 @@
 
 #include <GL/glew.h>
 #include <BFW/debug.h>
+#include <BFW/texture.h>
 
 class Sprite
 {
 	public:
 		Sprite(std::string& image_path);
 		virtual ~Sprite();
-		GLuint texture() { return _texture; };
+		Texture texture() { return _texture; };
 		GLuint vertexbuffer() { return _vertexbuffer; };
 		GLuint uvbuffer() { return _uvbuffer; };
 
@@ -20,9 +21,9 @@ class Sprite
 		unsigned int height() { return _height; };
 
 	private:
-		GLuint loadTGA(const std::string& imagepath);
+		void loadTGA(const std::string& imagepath);
 
-		GLuint _texture;
+		Texture _texture;
 		GLuint _vertexbuffer;
 		GLuint _uvbuffer;
 
