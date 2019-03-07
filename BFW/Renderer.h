@@ -21,6 +21,8 @@
 #include <BFW/Sprite.h>
 #include <BFW/Scene.h>
 #include <BFW/debug.h>
+#include <BFW/texture.h>
+#include <BFW/shader.h>
 
 class Renderer
 {
