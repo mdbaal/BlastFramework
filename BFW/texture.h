@@ -13,12 +13,6 @@ public:
 	GLuint ID;
 	// Texture image dimensions
 	GLuint width, height; // Width and height of loaded image in pixels
-	
-	// Texture configuration
-	GLuint wrap_S; // Wrapping mode on S axis
-	GLuint wrap_T; // Wrapping mode on T axis
-	GLuint filter_Min; // Filtering mode if texture pixels < screen pixels
-	GLuint filter_Max; // Filtering mode if texture pixels > screen pixels
 
 	// Constructor (sets default texture modes)
 	// Generates texture from image data
