@@ -15,9 +15,7 @@ public:
 	float CalcDeltaTime();
 	Renderer renderer;
 private:
-	float _deltaTime = 0;
-	Debug debug;
-	
+	float _deltaTime = 0;	
 };
 
 

@@ -23,6 +23,7 @@
 #include <BFW/debug.h>
 #include <BFW/texture.h>
 #include <BFW/shader.h>
+#include <BFW/resourceManager.h>
 
 class Renderer
 {
@@ -51,7 +52,7 @@ class Renderer
 			const char* vertex_file_path,
 			const char* fragment_file_path
 		);
-		Debug debug;
+		
 
 		GLuint _programID;
 

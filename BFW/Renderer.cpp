@@ -6,7 +6,7 @@ Renderer::Renderer() {
 
 Renderer::Renderer(unsigned int w, unsigned int h,char* name)
 {
-	debug.message("[Renderer init]");
+	Debug::message("[Renderer init]");
 	_window_width = w;
 	_window_height = h;
 	_window_name = name;
@@ -64,7 +64,9 @@ int Renderer::init()
 	glEnable(GL_CULL_FACE);
 
 	// Create and compile our GLSL program from the shaders
-	_programID = this->loadShaders("shaders/sprite.vert", "shaders/sprite.frag");
+	/*_programID = this->loadShaders("shaders/sprite.vert", "shaders/sprite.frag");*/
+	ResourceManager::loadShader("shaders/sprite.vert", "shaders/sprite.frag", "sprite");
+	_programID = ResourceManager::getShader("sprite").ID;
 
 	_projectionMatrix = glm::ortho(0.0f, (float)_window_width, (float)_window_height, 0.0f, 0.1f, 100.0f);
 

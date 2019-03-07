@@ -20,7 +20,6 @@ public:
 	// Binds the texture as the current active GL_TEXTURE_2D texture object
 	void bind() const;
 private:
-	Debug debug;
 };
 
 #endif //TEXTURE_H

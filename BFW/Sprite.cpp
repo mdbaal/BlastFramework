@@ -10,13 +10,14 @@
 
 Sprite::Sprite(std::string& image_path)
 {
-	// these will be set correctly in loadTGA()
+	// these will be set correctly in loadTexture()
 	_width = 0;
 	_height = 0;
 
 	// Load image as texture
-	loadTGA(image_path.c_str());
-
+	this->_texture = ResourceManager::loadTexture(image_path.c_str(),image_path);
+	this->_width = _texture.width;
+	this->_height = _texture.height;
 	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
 	// A sprite has 1 face (quad) with 2 triangles each, so this makes 1*2=2 triangles, and 2*3 vertices
 	GLfloat g_vertex_buffer_data[18] = {
@@ -58,7 +59,7 @@ Sprite::~Sprite()
 
 void Sprite::loadTGA(const std::string& imagepath)
 {
-	debug.message("Loading TGA: " + imagepath);
+	Debug::message("Loading TGA: " + imagepath);
 	FILE *file;
 	unsigned char type[4];
 	unsigned char info[6];
@@ -66,7 +67,7 @@ void Sprite::loadTGA(const std::string& imagepath)
 	file = fopen(imagepath.c_str(), "rb");
 
 	if (!file) {
-		debug.message("error: unable to open file");
+		Debug::message("error: unable to open file");
 		return;
 	}
 
@@ -77,7 +78,7 @@ void Sprite::loadTGA(const std::string& imagepath)
 	//image type needs to be 2 (color) or 3 (grayscale)
 	if (type[1] != 0 || (type[2] != 2 && type[2] != 3))
 	{
-		debug.message("error: image type neither color or grayscale");
+		Debug::message("error: image type neither color or grayscale");
 		fclose(file);
 		return;
 	}
@@ -90,20 +91,20 @@ void Sprite::loadTGA(const std::string& imagepath)
 	bitdepth = info[4] / 8;
 
 	if (bitdepth != 1 && bitdepth != 3 && bitdepth != 4) {
-		debug.message("bytecount not 1, 3 or 4");
+		Debug::message("bytecount not 1, 3 or 4");
 		fclose(file);
 		return;
 	}
 
 	// Check if the image's width and height is a power of 2. No biggie, we can handle it.
 	if ((_width & (_width - 1)) != 0) {
-		debug.message("warning: " + imagepath + "’s width is not a power of 2");
+		Debug::message("warning: " + imagepath + "’s width is not a power of 2");
 	}
 	if ((_height & (_height - 1)) != 0) {
-		debug.message("warning: " + imagepath + "’s height is not a power of 2");
+		Debug::message("warning: " + imagepath + "’s height is not a power of 2");
 	}
 	if (_width != _height) {
-		debug.message("warning: " + imagepath + " is not square");
+		Debug::message("warning: " + imagepath + " is not square");
 	}
 
 	unsigned int imagesize = _width * _height * bitdepth;

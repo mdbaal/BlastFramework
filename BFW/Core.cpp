@@ -1,7 +1,7 @@
 #include "Core.h"
 
 Core::Core() {
-	debug.message("[Core init]");
+	Debug::message("[Core init]");
 	renderer = Renderer(1024, 768, "demo");
 	
 }

@@ -25,7 +25,6 @@ public:
 private:
 	//check compile errors shader
 	void    checkCompileErrors(GLuint object, std::string type);
-	Debug debug;
 };
 
 #endif //SHADER_H

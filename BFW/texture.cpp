@@ -66,11 +66,12 @@ void Texture::generate(GLuint _width, GLuint _height, unsigned char* data,unsign
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, this->width, this->height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, data);
 		break;
 	default:
-		debug.message("error: bitdepth not 4, 3, or 1");
+		Debug::message("error: bitdepth not 4, 3, or 1");
 		break;
 	}
+	this->bind();
 }
 
 void Texture::bind() const {
-
+	glBindTexture(GL_TEXTURE_2D, this->ID);
 }

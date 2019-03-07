@@ -7,6 +7,7 @@
 #include <GL/glew.h>
 #include <BFW/debug.h>
 #include <BFW/texture.h>
+#include <BFW/resourceManager.h>
 
 class Sprite
 {
@@ -29,7 +30,7 @@ class Sprite
 
 		unsigned int _width;
 		unsigned int _height;
-		Debug debug;
+		
 };
 
 #endif // !SPRITE_H
