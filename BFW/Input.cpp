@@ -32,8 +32,8 @@ Input* Input::getInstance()
 void Input::updateInput(GLFWwindow* window) {
 	if (_window == NULL)_window = window;
 	glfwGetCursorPos(_window, &mouseX, &mouseY);
-
-
+	
+	//go through all inputs
 	for (int i = 32; i<97; i++) {
 		handle(i);
 	}

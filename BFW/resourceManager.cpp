@@ -43,7 +43,7 @@ Shader ResourceManager::loadShaderFromFile(const GLchar* vShaderFile, const GLch
 	// Read the Vertex Shader code from the file
 	std::string vertexShaderCode;
 	std::string fragmentShaderCode;
-	
+	//try reading the source files 
 	try {
 		std::ifstream vertexShaderStream(vShaderFile, std::ios::in);
 		std::ifstream fragmentShaderStream(fShaderFile, std::ios::in);
@@ -71,7 +71,7 @@ Shader ResourceManager::loadShaderFromFile(const GLchar* vShaderFile, const GLch
 	return shader;
 }
 void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
-	Debug::message("Loading TGA: " + (std::string)filepath);
+	Debug::message("Loading TGA: " + (std::string)filepath); //move this to loadTexture
 	FILE* file;
 
 	unsigned char _width;
@@ -142,6 +142,6 @@ void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
 	// OpenGL has now copied the data. Free our own version
 	delete[] data;
 
-	_textures[filepath] = texture;
+	_textures[filepath] = texture; //assign texture
 }
 

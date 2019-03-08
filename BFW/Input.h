@@ -136,26 +136,36 @@ private:
 	double mouseY;
 	static Input* input;
 	GLFWwindow* _window;
-
+	//which keys are pressed/released/held down
 	bool keys[GLFW_KEY_LAST];
 	bool keysUp[GLFW_KEY_LAST];
 	bool keysDown[GLFW_KEY_LAST];
-
+	//which mouse buttons are pressed/released/held down
 	bool mouseKeys[GLFW_MOUSE_BUTTON_LAST];
 	bool mouseKeysUp[GLFW_MOUSE_BUTTON_LAST];
 	bool mouseKeysDown[GLFW_MOUSE_BUTTON_LAST];
+	//handle keyboard and mouse input
 	void handle(int key);
 	void handleMouse(int button);
+
 	Input();
 	virtual ~Input();
 public:
+	//return instance of input, or create one if it doesn't exist yet and return afterwards
 	static Input* getInstance();
+	//check the inputs for keyboard and mouse
 	void updateInput(GLFWwindow* window);
+	//check for a key if it is pressed 
 	bool getKey(KeyCode key);
+	//check if a key is held down
 	bool getKeyDown(KeyCode key);
+	//check if a key is released
 	bool getKeyUp(KeyCode key);
+	//check if a mouse button is held down
 	bool getMouseDown(int mouseButton);
+	//check if a mouse button is released
 	bool getMouseUp(int mouseButton);
+	//return the mouse position
 	glm::vec2 getMousePos();
 };
 

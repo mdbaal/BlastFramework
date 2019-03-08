@@ -14,8 +14,11 @@ class Camera {
 public:	 
 	Camera();
 	Camera(glm::vec3 position);
+	//get the view matrix
 	glm::mat4 getViewMatrix();
+	//get the cursor
 	glm::vec3 getCursor();
+	//compute matrices
 	void computeMatricesFromInputs(GLFWwindow* window);
 
 	glm::mat4 _viewMatrix;

@@ -15,6 +15,7 @@ public:
 	Entity(std::string sprite,float x,float y,float r);
 	virtual ~Entity();
 	virtual void update(float deltaTime) = 0;
+
   //setters and adders
   void setSprite(std::string file);
   void addChild(Entity* e);

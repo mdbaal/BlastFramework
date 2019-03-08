@@ -11,7 +11,9 @@ class Core {
 public:
 	Core();
 	virtual ~Core();
+	//update the scene everyframe
 	void run(Scene* s);
+	//calculate the delta time
 	float CalcDeltaTime();
 	Renderer renderer;
 private:

@@ -44,7 +44,7 @@ void Shader::compile(const GLchar* vertexsource, const GLchar* fragmentSource) {
 void Shader::checkCompileErrors(GLuint object, std::string type) {
 	GLint success;
 	GLchar infoLog[1024];
-
+	//Is there an error in the compiling of the vertex or the fragment shaders
 	if (type != "PROGRAM") {
 		glGetShaderiv(object, GL_COMPILE_STATUS, &success);
 		if (!success) {
@@ -52,6 +52,7 @@ void Shader::checkCompileErrors(GLuint object, std::string type) {
 			Debug::message("| ERROR::SHADER: Compile-time error: Type: " + type + "\n" + "\n  -- --------------------------------------------------- -- ");
 		}
 	}
+	//Is there an error in when linking the shader program
 	else
 	{
 		glGetProgramiv(object, GL_LINK_STATUS, &success);
