@@ -13,7 +13,10 @@ std::map<std::string, Texture>    ResourceManager::_textures;
 std::map<std::string, Shader>       ResourceManager::_shaders;
 Shader ResourceManager::loadShader(const GLchar* vShaderFile, const GLchar* fShaderFile,std::string name) {
 	Debug::message("Loading shader: " + name);
-	_shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
+	if (!_shaders.count(name)) {
+		Debug::message("New shader: " + name);
+		_shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
+	}
 	_shaders[name].use();
 	return _shaders[name];
 }
@@ -23,8 +26,10 @@ Shader ResourceManager::getShader(std::string name) {
 }
 Texture ResourceManager::loadTexture(const GLchar* file, std::string name) {
 	Debug::message("Loading texture TGA: " + name);
-	loadTextureFromFile(file);
-
+	if (!_textures.count(name)) {
+		Debug::message("New texture: " + name);
+		loadTextureFromFile(file);
+	}
 	return _textures[name];
 }
 Texture ResourceManager::getTexture(std::string name) {
