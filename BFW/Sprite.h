@@ -22,8 +22,6 @@ class Sprite
 		unsigned int height() { return _height; };
 
 	private:
-		void loadTGA(const std::string& imagepath);
-
 		Texture _texture;
 		GLuint _vertexbuffer;
 		GLuint _uvbuffer;
