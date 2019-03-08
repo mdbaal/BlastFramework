@@ -52,12 +52,6 @@ class Renderer
 		unsigned int _window_height;
 		char* _window_name;
 
-		GLuint loadShaders(
-			const char* vertex_file_path,
-			const char* fragment_file_path
-		);
-		
-
 		GLuint _programID;
 
 		glm::mat4 _projectionMatrix;

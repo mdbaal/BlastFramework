@@ -161,36 +161,3 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 	glDisableVertexAttribArray(vertexPosition_modelspaceID);
 	glDisableVertexAttribArray(vertexUVID);
 }
-GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path)
-{
-	// Read the Vertex Shader code from the file
-	std::string vertexShaderCode;
-	std::ifstream vertexShaderStream(vertex_file_path, std::ios::in);
-	if (vertexShaderStream.is_open()){
-		std::string line = "";
-		while (getline(vertexShaderStream, line)) {
-			vertexShaderCode += "\n" + line;
-		}
-		vertexShaderStream.close();
-	} else {
-		printf("Can't to open %s.\n", vertex_file_path);
-		getchar();
-		return 0;
-	}
-
-	// Read the Fragment Shader code from the file
-	std::string fragmentShaderCode;
-	std::ifstream fragmentShaderStream(fragment_file_path, std::ios::in);
-	if (fragmentShaderStream.is_open()){
-		std::string line = "";
-		while (getline(fragmentShaderStream, line)) {
-			fragmentShaderCode += "\n" + line;
-		}
-		fragmentShaderStream.close();
-	}
-	//create and compile shader
-	Shader shader;
-	shader.compile(vertexShaderCode.c_str(), fragmentShaderCode.c_str());
-	
-	return shader.ID;
-}
