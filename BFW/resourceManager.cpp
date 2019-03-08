@@ -12,6 +12,7 @@ ResourceManager::~ResourceManager(){
 std::map<std::string, Texture>    ResourceManager::_textures;
 std::map<std::string, Shader>       ResourceManager::_shaders;
 Shader ResourceManager::loadShader(const GLchar* vShaderFile, const GLchar* fShaderFile,std::string name) {
+	Debug::message("Loading shader: " + name);
 	_shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
 	_shaders[name].use();
 	return _shaders[name];
@@ -21,6 +22,7 @@ Shader ResourceManager::getShader(std::string name) {
 	return _shaders[name];
 }
 Texture ResourceManager::loadTexture(const GLchar* file, std::string name) {
+	Debug::message("Loading texture TGA: " + name);
 	loadTextureFromFile(file);
 
 	return _textures[name];
@@ -71,7 +73,6 @@ Shader ResourceManager::loadShaderFromFile(const GLchar* vShaderFile, const GLch
 	return shader;
 }
 void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
-	Debug::message("Loading TGA: " + (std::string)filepath); //move this to loadTexture
 	FILE* file;
 
 	unsigned char _width;
