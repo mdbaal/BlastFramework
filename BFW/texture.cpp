@@ -14,9 +14,8 @@ void Texture::generate(GLuint _width, GLuint _height, unsigned char* data,unsign
 
 	//create texture
 	glBindTexture(GL_TEXTURE_2D, this->ID);
-
 	// filter the Texture
-	unsigned char filter = 0;
+	unsigned char filter = 1;
 	switch (filter) {
 	case 0:
 		// No filtering.
