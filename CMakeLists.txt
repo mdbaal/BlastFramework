@@ -77,6 +77,8 @@ add_library(BFW
 	BFW/debug.h
 	BFW/resourceManager.cpp
 	BFW/resourceManager.h
+	BFW/text.cpp
+	BFW/text.h
 
 	BFW/texture.cpp
 	BFW/texture.h
