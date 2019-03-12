@@ -12,6 +12,7 @@ public:
 	virtual ~Text();
 private:
 
+	std::string message = "";
 };
 
 #endif //TEXT_H
