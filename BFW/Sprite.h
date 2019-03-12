@@ -24,7 +24,14 @@ class Sprite
 		unsigned int width() { return _width; };
 		//return height
 		unsigned int height() { return _height; };
-
+		//return position
+		glm::vec3 getPosition() { return _position; };
+		//return rotation
+		float getRotation() { return _rotation; };
+		//set position
+		void setPosition(float x, float y) { this->_position = glm::vec3(x, y, 0); };
+		//set rotation
+		void setRotation(float rot) { _rotation = rot; };
 	private:
 		//sprites texture
 		Texture _texture;
@@ -36,6 +43,10 @@ class Sprite
 		unsigned int _width;
 		//
 		unsigned int _height;
+		//
+		glm::vec3 _position = glm::vec3(0, 0, 0);
+		//
+		float _rotation = 0;
 		
 };
 

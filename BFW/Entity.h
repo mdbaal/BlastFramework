@@ -17,9 +17,11 @@ public:
 
   //setters and adders
   void setSprite(std::string file);
+  void addToSpriteSet(std::string file);
   void addChild(Entity* e);
   void setPosition(float x,float y,float z);
   void move(float x, float y);
+  void rotate(float r);
   void setRotation(float r);
   void setScale(float x, float y, float z);
   //getters
@@ -28,6 +30,7 @@ public:
   float getRotation();
   glm::vec3 getScale();
   Sprite* getSprite();
+  std::vector<Sprite*> getSpriteSet();
 
   Input* input() {
 	  return Input::getInstance();
@@ -41,6 +44,7 @@ public:
 private:
   Entity * parent = NULL;
   Sprite* sprite = NULL;
+  std::vector<Sprite*> spriteSet = std::vector<Sprite*>();
   glm::vec3 position = glm::vec3(0,0,0);
   glm::vec3 scale = glm::vec3(1,1,1);
   float rotation = 0;

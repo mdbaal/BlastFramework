@@ -98,6 +98,9 @@ void Renderer::renderEntity(Entity* entity, glm::mat4 viewMatrix,Camera* camera)
  	if (entity->getSprite() != NULL) {
 		renderSprite(entity->getSprite(), entity->getPosition(), entity->getScale(), entity->getRotation(), viewMatrix);
 	}
+	if (entity->getSpriteSet().size() > 0) {
+		renderSpriteSet(entity->getSpriteSet(),entity->getPosition(),entity->getScale(),entity->getRotation(),viewMatrix);
+	}
 	
 	for each(Entity* e in entity->getChildren()) {
 		renderEntity(e, viewMatrix, camera);
@@ -108,8 +111,8 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), position);
-	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, rotation);
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), position + sprite->getPosition());
+	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, rotation + sprite->getRotation());
 	glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), scale);
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
@@ -160,4 +163,12 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 
 	glDisableVertexAttribArray(vertexPosition_modelspaceID);
 	glDisableVertexAttribArray(vertexUVID);
+}
+
+void Renderer::renderSpriteSet(std::vector<Sprite*> spriteSet, glm::vec3 pos, glm::vec3 scale , float rot, glm::mat4 viewMatrix)
+{
+	for (int i = 0; i < spriteSet.size(); i++) {
+		Sprite* s = spriteSet[i];
+		renderSprite(s, pos + s->getPosition(),scale,rot + s->getRotation(), viewMatrix);
+	}
 }

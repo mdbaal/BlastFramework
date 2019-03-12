@@ -33,6 +33,8 @@ class Renderer
 		virtual ~Renderer();
 		//render the sprite	
 		void renderSprite(Sprite* sprite, glm::vec3 pos, glm::vec3 scale, float rotation, glm::mat4 viewMatrix);
+		//render the spriteSet
+		void renderSpriteSet(std::vector<Sprite*> spriteSet, glm::vec3 pos, glm::vec3 scale, float rotation, glm::mat4 viewMatrix);
 		//check if the entity has a sprite and render it
 		void renderEntity(Entity* entity, glm::mat4 viewMatrix, Camera* camera);
 		//Go through the scene and render any entities in the scene

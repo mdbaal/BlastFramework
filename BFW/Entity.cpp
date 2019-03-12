@@ -19,6 +19,8 @@ Entity::~Entity() {
 void Entity::setSprite(std::string file) {
 	deleteSprite();
 	this->sprite = new Sprite(file);
+	this->sprite->setPosition(this->getPosition().x,this->getPosition().y);
+	this->sprite->setRotation(this->getRotation());
 }
 
 void Entity::addChild(Entity* e) {
@@ -27,12 +29,19 @@ void Entity::addChild(Entity* e) {
 	this->children.push_back(e);
 }
 
+void Entity::addToSpriteSet(std::string file) {
+	this->spriteSet.push_back(new Sprite(file));
+}
+
 void Entity::setPosition(float x, float y, float z) {
 	this->position = glm::vec3(x, y, z);
 }
 void Entity::move(float x, float y) {
 	this->position.x += x;
 	this->position.y += y;
+}
+void Entity::rotate(float r) {
+	this->rotation += r;
 }
 
 void Entity::setRotation(float r) {
@@ -44,6 +53,10 @@ void Entity::setScale(float x, float y, float z) {
 //getters
 std::vector<Entity*> Entity::getChildren() {
 	return this->children;
+}
+
+std::vector<Sprite*> Entity::getSpriteSet() {
+	return this->spriteSet;
 }
 
 glm::vec3 Entity::getPosition() {

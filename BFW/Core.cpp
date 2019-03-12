@@ -16,7 +16,8 @@ void Core::run(Scene* s) {
 		//update input
 		Input::getInstance()->updateInput(renderer.window());
 		//update scene
-		s->updateScene(-_deltaTime);
+		CalcDeltaTime();
+		s->updateScene(_deltaTime);
 		//render the scene
 		renderer.renderScene(s);
 		//if the window is closed or the escape key is pressed exit the program

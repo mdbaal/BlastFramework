@@ -16,11 +16,12 @@ void Card::update(float deltatime) {
 	if (this->input()->getKey(A)) {
 		this->move(-1, 0);
 	}
-	if (this->input()->getKey(W)) {
-		this->move(0, -1);
+	
+	if (input()->getKeyDown(Up)) {
+		this->getSprite()->setPosition(100,0);
 	}
-	if (this->input()->getKey(S)) {
-		this->move(0, 1);
+	if (input()->getKeyDown(Down)) {
+		this->getSprite()->setPosition(0,0);
 	}
 
 }
