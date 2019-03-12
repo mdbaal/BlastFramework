@@ -2,9 +2,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-
-
-#include "Sprite.h"
+#include "BFW/sprite.h"
 #include "glm/glm.hpp"
 #include <vector>
 #include "Input.h"
@@ -13,6 +11,7 @@
 class Entity{
 public:
 	Entity(std::string sprite,float x,float y,float r);
+	Entity();
 	virtual ~Entity();
 	virtual void update(float deltaTime) = 0;
 

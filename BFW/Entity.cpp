@@ -5,6 +5,9 @@ Entity::Entity(std::string sprite,float x,float y,float r) {
 	this->setPosition(x, y, 0);
 	this->setRotation(r);
 }
+Entity::Entity() {
+
+}
 
 Entity::~Entity() {
 

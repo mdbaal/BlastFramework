@@ -1,9 +1,10 @@
 #ifndef TEXT_H
 #define TEXT_H
 
-#include <entity.h>
 #include <string>
-#include "resourceManager.h"
+
+#include <BFW/entity.h>
+#include "BFW/resourceManager.h"
 
 class Text : public Entity{
 public:
