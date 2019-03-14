@@ -3,7 +3,7 @@
 Core::Core() {
 	Debug::message("[Core init]");
 	renderer = Renderer(1024, 768, "demo");
-	
+
 }
 
 Core::~Core() {
@@ -12,7 +12,7 @@ Core::~Core() {
 }
 
 void Core::run(Scene* s) {
-	while (s->isRunning()) {
+	while (s->isRunning() && SceneManager::getActiveScene() == s) {
 		//update input
 		Input::getInstance()->updateInput(renderer.window());
 		//update scene
@@ -22,7 +22,17 @@ void Core::run(Scene* s) {
 		renderer.renderScene(s);
 		//if the window is closed or the escape key is pressed exit the program
 		if (glfwWindowShouldClose(renderer.window()) == 1 || Input::getInstance()->getKey(Escape)) { s->stop(); }
+
+		//temp switch functions
+		if (Input::getInstance()->getKeyDown(LeftBracket)) {
+			SceneManager::toNext();
+		}
+		if(Input::getInstance()->getKeyDown(RightBracket)){
+			SceneManager::toPrevious();
+		}
+		//
 	}
+	if (s->isRunning()) this->run(SceneManager::getActiveScene());
 }
 float Core::CalcDeltaTime() {
 	static float lastTime = glfwGetTime();

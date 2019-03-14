@@ -10,9 +10,13 @@ class Text : public Entity{
 public:
 	Text();
 	virtual ~Text();
+
+	void update(float deltatime);
+
+	void message(std::string msg);
 private:
 
-	std::string message = "";
+	std::string _message = "";
 };
 
 #endif //TEXT_H

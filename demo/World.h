@@ -4,6 +4,7 @@
 
 #include <BFW/Scene.h>
 #include "Card.h"
+#include <BFW/text.h>
 //#include "BFW/Button.h"
 
 class World : public Scene {

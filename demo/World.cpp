@@ -12,7 +12,6 @@ World::World() {
 World::~World() {
 	delete card;
 	delete card1;
-	
 
 	this->getChildren().clear();
 }
@@ -20,5 +19,6 @@ void World::update(float deltaTime) {
 	if (Input::getInstance()->getKeyDown(Q)) {
 		this->removeChild(card);
 	}
+	
 	
 }

@@ -4,6 +4,7 @@
 
 #include "Renderer.h"
 #include "Input.h"
+#include "sceneManager.h"
 #include "Scene.h"
 #include "debug.h"
 

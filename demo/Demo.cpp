@@ -6,15 +6,18 @@
 
 #include <BFW/Core.h>
 
+
 #include <demo/world.h>
 
 int main( void )
 {
 	Core core;
 
-	World* world = new World();
+	SceneManager::addScene("one",new World());
+	SceneManager::addScene("two", new World());
+	SceneManager::addScene("three", new World());
 
-	core.run(world);
+	core.run(SceneManager::getActiveScene());
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
