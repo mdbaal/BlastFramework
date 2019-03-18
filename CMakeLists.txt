@@ -80,7 +80,7 @@ add_library(BFW
 	BFW/resourceManager.h
 	BFW/sceneManager.cpp
 	BFW/sceneManager.h
-	BFW/text.cpp
+ BFW/color.cpp BFW/color.h	BFW/text.cpp
 	BFW/text.h
 
 	BFW/texture.cpp

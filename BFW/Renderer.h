@@ -24,6 +24,7 @@
 #include "texture.h"
 #include "shader.h"
 #include "resourceManager.h"
+#include "color.h"
 
 class Renderer
 {
