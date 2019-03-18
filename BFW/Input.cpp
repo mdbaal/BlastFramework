@@ -1,5 +1,4 @@
-#include <BFW/Input.h>
-
+#include "input.h"
 Input::Input() {
 	_window = NULL;
 	for (int i = 0; i < GLFW_KEY_LAST; i++) {

@@ -17,13 +17,13 @@
 #include <iostream>
 #include <thread>
 
-#include <BFW/camera.h>
-#include <BFW/Sprite.h>
-#include <BFW/Scene.h>
-#include <BFW/debug.h>
-#include <BFW/texture.h>
-#include <BFW/shader.h>
-#include <BFW/resourceManager.h>
+#include "camera.h"
+#include "sprite.h"
+#include "scene.h"
+#include "debug.h"
+#include "texture.h"
+#include "shader.h"
+#include "resourceManager.h"
 
 class Renderer
 {

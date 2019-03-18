@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include <BFW/entity.h>
-#include "BFW/resourceManager.h"
+#include "entity.h"
+#include "resourceManager.h"
 
 class Text : public Entity{
 public:

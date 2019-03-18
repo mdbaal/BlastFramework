@@ -21,7 +21,7 @@ void Core::run(Scene* s) {
 		//render the scene
 		renderer.renderScene(s);
 		//if the window is closed or the escape key is pressed exit the program
-		if (glfwWindowShouldClose(renderer.window()) == 1 || Input::getInstance()->getKey(Escape)) { s->stop(); }
+		if (glfwWindowShouldClose(renderer.window()) == 1 || Input::getInstance()->getKey(Esc)) { s->stop(); }
 
 		//temp switch functions
 		if (Input::getInstance()->getKeyDown(LeftBracket)) {

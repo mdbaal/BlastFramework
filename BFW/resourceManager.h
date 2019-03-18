@@ -7,9 +7,9 @@
 #include <string>
 #include <fstream>
 
-#include <BFW/texture.h>
-#include <BFW/shader.h>
-#include <BFW/debug.h>
+#include "texture.h"
+#include "shader.h"
+#include "debug.h"
 
 class ResourceManager{
 public:

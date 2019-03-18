@@ -9,7 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
-#include <BFW/Input.h>
+#include "input.h"
 class Camera {
 public:	 
 	Camera();

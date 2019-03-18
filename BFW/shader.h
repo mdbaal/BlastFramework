@@ -5,7 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <BFW/debug.h>
+#include "debug.h"
 
 #include <string>
 

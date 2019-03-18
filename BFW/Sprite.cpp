@@ -5,7 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
-#include <BFW/sprite.h>
+#include "sprite.h"
 
 
 Sprite::Sprite(std::string& image_path)

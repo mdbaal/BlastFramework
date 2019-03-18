@@ -54,3 +54,10 @@ target_link_libraries(GLEW_190
     ${OPENGL_LIBRARY}
     ${EXTRA_LIBS}
 )
+
+## termcolor ##
+add_subdirectory(termcolor)
+
+include_directories(
+  termcolor/include/termcolor/
+)

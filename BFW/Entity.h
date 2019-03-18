@@ -2,11 +2,11 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "BFW/sprite.h"
+#include "sprite.h"
 #include "glm/glm.hpp"
 #include <vector>
 #include "Input.h"
-#include <BFW/debug.h>
+#include "debug.h"
 
 class Entity{
 public:
