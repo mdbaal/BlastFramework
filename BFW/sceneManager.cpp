@@ -39,11 +39,11 @@ void SceneManager::toNext()
 			it++;
 			if (it == scenes.end()) {
 				_activeScene = scenes.begin()->second;
-				Debug::message("to next scene: " + scenes.begin()->first);
+				Debug::message("to next scene: " + scenes.begin()->first, Debug::blue);
 				return;
 			}
 			_activeScene = it->second;
-			Debug::message("to next scene: " + it->first);
+			Debug::message("to next scene: " + it->first, Debug::blue);
 			return;
 		}
 		it++;
@@ -58,12 +58,12 @@ void SceneManager::toPrevious()
 				it = scenes.end();
 				it--;
 				_activeScene = it->second;
-				Debug::message("to next scene: " + it->first);
+				Debug::message("to next scene: " + it->first, Debug::blue);
 				return;
 			}
 			it--;
 			_activeScene = it->second;
-			Debug::message("to next scene: " + it->first);
+			Debug::message("to next scene: " + it->first, Debug::blue);
 			return;
 		}
 		it++;

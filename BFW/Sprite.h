@@ -32,6 +32,7 @@ class Sprite
 		void setPosition(float x, float y) { this->_position = glm::vec3(x, y, 0); };
 		//set rotation
 		void setRotation(float rot) { _rotation = rot; };
+		
 	private:
 		//sprites texture
 		Texture _texture;
@@ -47,6 +48,7 @@ class Sprite
 		glm::vec3 _position = glm::vec3(0, 0, 0);
 		//
 		float _rotation = 0;
+		
 		
 };
 

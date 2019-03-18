@@ -14,7 +14,7 @@ std::map<std::string, Shader>       ResourceManager::_shaders;
 Shader ResourceManager::loadShader(const GLchar* vShaderFile, const GLchar* fShaderFile,std::string name) {
 	Debug::message("Loading shader: " + name);
 	if (!_shaders.count(name)) {
-		Debug::message("New shader: " + name);
+		Debug::message("New shader: " + name,Debug::green);
 		_shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile);
 	}
 	_shaders[name].use();
@@ -27,7 +27,7 @@ Shader ResourceManager::getShader(std::string name) {
 Texture ResourceManager::loadTexture(const GLchar* file, std::string name) {
 	Debug::message("Loading texture TGA: " + name);
 	if (!_textures.count(name)) {
-		Debug::message("New texture: " + name);
+		Debug::message("New texture: " + name, Debug::green);
 		loadTextureFromFile(file);
 	}
 	return _textures[name];
@@ -70,7 +70,7 @@ Shader ResourceManager::loadShaderFromFile(const GLchar* vShaderFile, const GLch
 		fragmentShaderStream.close();
 	}
 	catch (std::exception e) {
-		Debug::message("ERROR::SHADER: Failed to read shader files");
+		Debug::message("ERROR::SHADER: Failed to read shader files",Debug::red);
 	}
 	//create and compile shader
 	Shader shader;
@@ -89,7 +89,7 @@ void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
 	file = fopen(filepath, "rb");
 
 	if (!file) {
-		Debug::message("error: unable to open file");
+		Debug::message("error: unable to open file", Debug::red);
 		return;
 	}
 
@@ -100,7 +100,7 @@ void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
 	//image type needs to be 2 (color) or 3 (grayscale)
 	if (type[1] != 0 || (type[2] != 2 && type[2] != 3))
 	{
-		Debug::message("error: image type neither color or grayscale");
+		Debug::message("error: image type neither color or grayscale", Debug::red);
 		fclose(file);
 		return;
 	}
@@ -113,20 +113,20 @@ void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
 	bitdepth = info[4] / 8;
 
 	if (bitdepth != 1 && bitdepth != 3 && bitdepth != 4) {
-		Debug::message("bytecount not 1, 3 or 4");
+		Debug::message("bytecount not 1, 3 or 4", Debug::red);
 		fclose(file);
 		return;
 	}
 
 	// Check if the image's width and height is a power of 2. No biggie, we can handle it.
 	if ((_width & (_width - 1)) != 0) {
-		Debug::message("warning: " + (std::string)filepath + "’s width is not a power of 2");
+		Debug::message("warning: " + (std::string)filepath + "’s width is not a power of 2", Debug::red);
 	}
 	if ((_height & (_height - 1)) != 0) {
-		Debug::message("warning: " + (std::string)filepath + "’s height is not a power of 2");
+		Debug::message("warning: " + (std::string)filepath + "’s height is not a power of 2", Debug::red);
 	}
 	if (_width != _height) {
-		Debug::message("warning: " + (std::string)filepath + " is not square");
+		Debug::message("warning: " + (std::string)filepath + " is not square", Debug::red);
 	}
 
 	unsigned int imagesize = _width * _height * bitdepth;

@@ -16,6 +16,7 @@ public:
 
 	
 	GLuint ID;
+	GLuint blendID;
 	// Sets the current shader as active
 	Shader  &use();
 	// Compiles the shader from given source code

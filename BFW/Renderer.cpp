@@ -128,10 +128,12 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 	// Bind our texture in Texture Unit 0
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, sprite->texture().ID);
+	//blend texturere with color
+	glUniform4f(ResourceManager::getShader("sprite").blendID, 1, 1, 1, 1);
 	// Set our "myTextureSampler" sampler to user Texture Unit 0
 	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
 	glUniform1i(textureID, 0);
-
+	
 	// 1st attribute buffer : vertices
 	GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
 	glEnableVertexAttribArray(vertexPosition_modelspaceID);
