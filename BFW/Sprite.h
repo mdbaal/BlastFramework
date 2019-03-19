@@ -19,6 +19,8 @@ class Sprite
 		Texture texture() { return _texture; };
 		//
 		Color color() { return _color; };
+		//
+		void color(Color c) { _color = c; };
 		//returns the vertex buffer
 		GLuint vertexbuffer() { return _vertexbuffer; };
 		//return the uvBuffer

@@ -24,6 +24,15 @@ void Card::update(float deltatime) {
 		this->getSprite()->setPosition(0,0);
 	}
 
+	if (input()->getKey(Q)) {
+		this->rotate(-5 * deltatime);
+	}
+	if (input()->getKey(E)) {
+		this->rotate(+5 * deltatime);
+	}
+
+	this->getSprite()->color(Color(input()->getMousePos().x - this->getPosition().x, input()->getMousePos().y - this->getPosition().y, 255, 255));
+
 }
 
 

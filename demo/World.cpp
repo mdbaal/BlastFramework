@@ -16,7 +16,7 @@ World::~World() {
 	this->getChildren().clear();
 }
 void World::update(float deltaTime) {
-	if (Input::getInstance()->getKeyDown(Q)) {
+	if (Input::getInstance()->getKeyDown(Z)) {
 		this->removeChild(card);
 	}
 	
