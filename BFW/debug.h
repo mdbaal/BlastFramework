@@ -8,7 +8,7 @@
 
 class Debug{
 public:
-	static enum termColor {
+	 enum termColor {
 		grey,
 		red,
 		green,

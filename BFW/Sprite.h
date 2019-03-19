@@ -8,6 +8,7 @@
 #include <BFW/debug.h>
 #include <BFW/texture.h>
 #include <BFW/resourceManager.h>
+#include "color.h"
 
 class Sprite
 {
@@ -16,6 +17,8 @@ class Sprite
 		virtual ~Sprite();
 		//returns the texture
 		Texture texture() { return _texture; };
+		//
+		Color color() { return _color; };
 		//returns the vertex buffer
 		GLuint vertexbuffer() { return _vertexbuffer; };
 		//return the uvBuffer
@@ -33,6 +36,7 @@ class Sprite
 		//set rotation
 		void setRotation(float rot) { _rotation = rot; };
 		
+		
 	private:
 		//sprites texture
 		Texture _texture;
@@ -48,6 +52,8 @@ class Sprite
 		glm::vec3 _position = glm::vec3(0, 0, 0);
 		//
 		float _rotation = 0;
+		//
+		Color _color;
 		
 		
 };
