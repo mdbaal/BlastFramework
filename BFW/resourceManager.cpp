@@ -24,11 +24,11 @@ Shader ResourceManager::loadShader(const GLchar* vShaderFile, const GLchar* fSha
 Shader ResourceManager::getShader(std::string name) {
 	return _shaders[name];
 }
-Texture ResourceManager::loadTexture(const GLchar* file, std::string name) {
+Texture ResourceManager::loadTexture(const GLchar* file, std::string name,int filter) {
 	Debug::message("Loading texture TGA: " + name);
 	if (!_textures.count(name)) {
 		Debug::message("New texture: " + name, Debug::green);
-		loadTextureFromFile(file);
+		loadTextureFromFile(file,filter);
 	}
 	return _textures[name];
 }
@@ -77,11 +77,13 @@ Shader ResourceManager::loadShaderFromFile(const GLchar* vShaderFile, const GLch
 	shader.compile(vertexShaderCode.c_str(), fragmentShaderCode.c_str());
 	return shader;
 }
-void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
+void ResourceManager::loadTextureFromFile(const GLchar* filepath,int filter) {
 	FILE* file;
 
 	unsigned char _width;
 	unsigned char _height;
+	//
+	int _filter = 1;
 
 	unsigned char type[4];
 	unsigned char info[6];
@@ -141,8 +143,9 @@ void ResourceManager::loadTextureFromFile(const GLchar* filepath) {
 	fclose(file);
 
 	//generate texture
+	_filter = filter;
 	Texture texture;
-	texture.generate(_width, _height, data, bitdepth);
+	texture.generate(_width, _height, data, bitdepth,_filter);
 
 
 	// OpenGL has now copied the data. Free our own version

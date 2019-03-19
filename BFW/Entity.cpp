@@ -1,7 +1,7 @@
 #include "Entity.h"
 
-Entity::Entity(std::string sprite,float x,float y,float r) {
-	if(sprite != "") this->setSprite(sprite);
+Entity::Entity(std::string sprite,int filter,float x,float y,float r) {
+	if(sprite != "") this->setSprite(sprite,filter);
 	this->setPosition(x, y, 0);
 	this->setRotation(r);
 }
@@ -16,9 +16,9 @@ Entity::~Entity() {
 }
 //adders and setters
 
-void Entity::setSprite(std::string file) {
+void Entity::setSprite(std::string file,int filter) {
 	deleteSprite();
-	this->sprite = new Sprite(file);
+	this->sprite = new Sprite(file,filter);
 	this->sprite->setPosition(this->getPosition().x,this->getPosition().y);
 	this->sprite->setRotation(this->getRotation());
 }
@@ -30,7 +30,7 @@ void Entity::addChild(Entity* e) {
 }
 
 void Entity::addToSpriteSet(std::string file) {
-	this->spriteSet.push_back(new Sprite(file));
+	this->spriteSet.push_back(new Sprite(file,1));
 }
 
 void Entity::setPosition(float x, float y, float z) {

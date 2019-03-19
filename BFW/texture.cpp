@@ -1,3 +1,4 @@
+
 #include "texture.h"
 
 Texture::Texture(){
@@ -8,14 +9,13 @@ Texture::~Texture(){
 
 
 }
-void Texture::generate(GLuint _width, GLuint _height, unsigned char* data,unsigned char bitdepth) {
+void Texture::generate(GLuint _width, GLuint _height, unsigned char* data,unsigned char bitdepth,int filter) {
 	this->width = _width;
 	this->height = _height;
 
 	//create texture
 	glBindTexture(GL_TEXTURE_2D, this->ID);
 	// filter the Texture
-	unsigned char filter = 1;
 	switch (filter) {
 	case 0:
 		// No filtering.

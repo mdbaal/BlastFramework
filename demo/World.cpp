@@ -1,8 +1,8 @@
 #include "world.h"
 
 World::World() {
-	card = new Card("assets/card.tga",10,100,45);
-	card1 = new Card("assets/card1.tga", 10, 500, 0);
+	card = new Card("assets/card.tga",1,10,100,45);
+	card1 = new Card("assets/card1.tga",0, 10, 500, 0);
 	
 	this->addChild(card);
 	card->addChild(card1);

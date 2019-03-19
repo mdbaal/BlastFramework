@@ -10,13 +10,13 @@
 
 class Entity{
 public:
-	Entity(std::string sprite,float x,float y,float r);
+	Entity(std::string sprite,int filter,float x,float y,float r);
 	Entity();
 	virtual ~Entity();
 	virtual void update(float deltaTime) = 0;
 
   //setters and adders
-  void setSprite(std::string file);
+  void setSprite(std::string file,int filter);
   void addToSpriteSet(std::string file);
   void addChild(Entity* e);
   void setPosition(float x,float y,float z);

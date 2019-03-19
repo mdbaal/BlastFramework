@@ -7,15 +7,18 @@
 
 #include "sprite.h"
 
+Sprite::Sprite() {
 
-Sprite::Sprite(std::string& image_path)
+}
+
+Sprite::Sprite(std::string& image_path,int filter)
 {
 	// these will be set correctly in loadTexture()
 	_width = 0;
 	_height = 0;
-
+	_filter = filter;
 	// Load image as texture via resource manager
-	this->_texture = ResourceManager::loadTexture(image_path.c_str(),image_path);
+	this->_texture = ResourceManager::loadTexture(image_path.c_str(),image_path,_filter);
 	this->_width = _texture.width;
 	this->_height = _texture.height;
 	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
@@ -50,11 +53,12 @@ Sprite::Sprite(std::string& image_path)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
 }
 
+
+
 Sprite::~Sprite()
 {
 	glDeleteBuffers(1, &_vertexbuffer);
 	glDeleteBuffers(1, &_uvbuffer);
-	//glDeleteTextures(1, &_texture.ID); // texture created in loadTGA() with glGenTextures() <- REMOVE, THIS IS DONE IN RESOURCEMANAGER
 }
 
 

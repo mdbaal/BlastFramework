@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene() : Entity("",0,0,0) {
+Scene::Scene() : Entity("",0,0,0,0) {
 	this->running = true;
 	this->camera = new Camera();
 }

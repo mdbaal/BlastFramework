@@ -1,7 +1,7 @@
 #include "Card.h"
 
 
-Card::Card(std::string sp,float x, float y, float r) : Entity(sp, x, y, r) {
+Card::Card(std::string sp,int f,float x, float y, float r) : Entity(sp, f,x, y, r) {
 
 }
 

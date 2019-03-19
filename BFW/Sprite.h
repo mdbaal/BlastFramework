@@ -13,7 +13,10 @@
 class Sprite
 {
 	public:
-		Sprite(std::string& image_path);
+		Sprite();
+		Sprite(std::string& image_path,int filter);
+		
+		
 		virtual ~Sprite();
 		//returns the texture
 		Texture texture() { return _texture; };
@@ -50,6 +53,8 @@ class Sprite
 		unsigned int _width;
 		//
 		unsigned int _height;
+		//
+		int _filter = 0;
 		//
 		glm::vec3 _position = glm::vec3(0, 0, 0);
 		//

@@ -130,7 +130,6 @@ void Renderer::renderSprite(Sprite* sprite, glm::vec3 position, glm::vec3 scale,
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, sprite->texture().ID);
 	//blend texturere with color
-	
 	glUniform4f(ResourceManager::getShader("sprite").blendID,(float) blend.r/255, (float)blend.g/255, (float)blend.b/255, (float)blend.a/255);
 	// Set our "myTextureSampler" sampler to user Texture Unit 0
 	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");

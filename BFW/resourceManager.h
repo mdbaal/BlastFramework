@@ -22,7 +22,7 @@ public:
 	//return a shader
 	static Shader getShader(std::string name);
 	//load texture, returns a texture after completion or if it already exists
-	static Texture loadTexture(const GLchar* file,std::string name);
+	static Texture loadTexture(const GLchar* file,std::string name,int filter);
 	//return a texture
 	static Texture getTexture(std::string name);
 	//clear the resource manager completely
@@ -33,7 +33,7 @@ private:
 	//load the shader from the file
 	static Shader loadShaderFromFile(const GLchar* vShaderFile, const GLchar* fShaderFile);
 	//load the texture form the file
-	static void loadTextureFromFile(const GLchar* file);
+	static void loadTextureFromFile(const GLchar* file,int filter);
 };
 
 #endif //RESOURCEMANAGER_H
