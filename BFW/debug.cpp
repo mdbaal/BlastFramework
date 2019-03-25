@@ -40,7 +40,7 @@ void Debug::message(std::string msg, termColor color) {
 			std::cout << termcolor::reset;
 			break;
 		case 7: //white
-			std::cout << termcolor::white << msg << std::endl;
+			std::cout <<	 termcolor::white << msg << std::endl;
 			std::cout << termcolor::reset;
 			break;
 
