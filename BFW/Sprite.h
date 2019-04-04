@@ -16,8 +16,9 @@ class Sprite
 		Sprite();
 		Sprite(std::string& image_path,int filter);
 		
-		
 		virtual ~Sprite();
+
+		void setupSprite(std::string image_path, int filter, float uvWidth, float uvHeight);
 		//returns the texture
 		Texture texture() { return _texture; };
 		//

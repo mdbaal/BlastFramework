@@ -2,8 +2,10 @@
 
 World::World() {
 	card = new Card("assets/card.tga",1,10,100,45);
-	card1 = new Card("assets/card1.tga",0, 10, 500, 0);
-	
+	card1 = new Card();
+	card1->setSprite("assets/card.tga", 1);
+	card1->setPosition(50, 500,1);
+	card1->getSprite()->setupSprite("assets/card.tga",1,.5,.5);
 	this->addChild(card);
 	card->addChild(card1);
 	

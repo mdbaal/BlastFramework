@@ -7,6 +7,7 @@
 class Card : public Entity {
 public:
 	Card(std::string sp,int f,float x,float y,float r);
+	Card();
 	virtual ~Card();
 	virtual void update(float deltatime);
 	

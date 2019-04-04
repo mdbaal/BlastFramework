@@ -4,6 +4,8 @@
 Card::Card(std::string sp,int f,float x, float y, float r) : Entity(sp, f,x, y, r) {
 
 }
+Card::Card(){
+}
 
 
 Card::~Card() {

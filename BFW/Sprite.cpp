@@ -8,21 +8,33 @@
 #include "sprite.h"
 
 Sprite::Sprite() {
-
+	_width = 0;
+	_height = 0;
 }
 
 Sprite::Sprite(std::string& image_path,int filter)
 {
+	setupSprite(image_path, filter, 1, 1);
+}
+
+
+
+Sprite::~Sprite()
+{
+	glDeleteBuffers(1, &_vertexbuffer);
+	glDeleteBuffers(1, &_uvbuffer);
+}
+
+void Sprite::setupSprite(std::string image_path, int filter, float uvWidth, float uvHeight) {
 	// these will be set correctly in loadTexture()
 	_width = 0;
 	_height = 0;
 	_filter = filter;
 	// Load image as texture via resource manager
-	this->_texture = ResourceManager::loadTexture(image_path.c_str(),image_path,_filter);
+	this->_texture = ResourceManager::loadTexture(image_path.c_str(), image_path, _filter);
 	this->_width = _texture.width;
 	this->_height = _texture.height;
-	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
-	// A sprite has 1 face (quad) with 2 triangles each, so this makes 1*2=2 triangles, and 2*3 vertices
+
 	GLfloat g_vertex_buffer_data[18] = {
 		 0.5f * _width, -0.5f * _height, 0.0f,
 		-0.5f * _width, -0.5f * _height, 0.0f,
@@ -35,13 +47,13 @@ Sprite::Sprite(std::string& image_path,int filter)
 
 	// Two UV coordinates for each vertex.
 	GLfloat g_uv_buffer_data[12] = {
-		1.0f, 1.0f,
-		0.0f, 1.0f,
+		uvWidth, uvHeight,
+		0.0f, uvHeight,
 		0.0f, 0.0f,
 
 		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f
+		uvWidth, 0.0f,
+		uvWidth,uvHeight
 	};
 
 	glGenBuffers(1, &_vertexbuffer);
@@ -51,14 +63,6 @@ Sprite::Sprite(std::string& image_path,int filter)
 	glGenBuffers(1, &_uvbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, _uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
-}
-
-
-
-Sprite::~Sprite()
-{
-	glDeleteBuffers(1, &_vertexbuffer);
-	glDeleteBuffers(1, &_uvbuffer);
 }
 
 
