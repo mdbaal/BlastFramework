@@ -16,7 +16,7 @@ public:
 	virtual void update(float deltaTime) = 0;
 
   //setters and adders
-  void setSprite(std::string file,int filter);
+  void setSprite(std::string file,int filter,float uvWidth,float uvHeight);
   void addToSpriteSet(std::string file);
   void addChild(Entity* e);
   void setPosition(float x,float y,float z);
